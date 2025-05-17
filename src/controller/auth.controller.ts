@@ -14,7 +14,6 @@ const AuthHandler: Router = Router();
 AuthHandler.post("/register", async (req: Request, res: Response) => {
   try {
     const body = req.body;
-    console.log(body);
     const payload = UserRegisterSchema.parse(body);
 
     const existingUser = await prisma.user.findUnique({
