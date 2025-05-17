@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./abstract/style/style.css" />
+    <title>{{ metaTitle }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <nav>
+      <div class="col-1">
+        <div class="logo">
+          <img src="./abstract/images/logo.png" class="logo-brand" alt="" />
+        </div>
+
+        <div class="brand-name">
+          <p>{{ headerTitle }}</p>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <button class="submitBtn">{{ outlineBtnText }}</button>
+
+        <button class="signIn">{{ fillBtnText }}</button>
+      </div>
+
+      <div class="mobile-nav--col-2">
+        <div class="search--icon-div">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            class="search--icon"
+          >
+            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"
+            />
+          </svg>
+        </div>
+
+        <div class="mob-menu" id="menuClick" onclick="menuOpen()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            class="menu--icon"
+          >
+            <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+
+        <div class="mob-menu-container" id="mob-menuBar">
+          <ul class="menu-links-container">
+            <li class="mob-item">
+              <button class="mob-btn">{{ outlineBtnText }}</button>
+            </li>
+            <hr class="btn-seperator" />
+            <li class="mob-item">
+              <button class="mob-signIn">{{ fillBtnText }}</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero_Main">
+      <h1>{{ heroTitle }}</h1>
+    </section>
+
+    <section class="section_2">
+      <div class="row">
+        {% for data in servicesData %}
+        <div class="col-s-1">
+          <div class="image">
+            <img
+              src="{{ data.image_url }}"
+              class="col-s-1-image"
+              alt="{{ data.title }}"
+            />
+          </div>
+
+          <div class="content-box-col-s-1">
+            <h3 class="content-h1">{{ data.title }}</h3>
+            <p class="content-p">{{ data.description }}</p>
+
+            <button class="cta">
+              <span class="hover-underline-animation">{{ data.btnText }}</span>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <footer>
+      <div class="row-footer">
+        <div class="footer-s-1-holder">
+
+          <div class="col-f-1 f-c">
+              <h3>Quick Links</h3>
+                <ul>
+                  {% for section in menuItems %}
+                    <li class="footer_Link">
+                      <a style="color: white; text-decoration: none;" class="footer_Link" href="{{ section.url }}">
+                        {{ section.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            </div>
+
+
+          {% for section in footer %}
+            <div class="col-f-1 f-c">
+              <h3>{{ section.title }}</h4>
+              <ul class="footer_navHolde">
+                {% for option in section.options %}
+                  <li class="footer_Link">{{option.label}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+
+          
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"
+    integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <script>
+    const menuOpen = document.getElementById("menuClick");
+
+    menuOpen.addEventListener("click", () => {
+      document.getElementById("mob-menuBar").classList.toggle("mob-menu-open");
+    });
+  </script>
+</html>
