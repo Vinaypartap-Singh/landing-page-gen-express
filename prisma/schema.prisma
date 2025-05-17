@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  username     String
+  email        String   @unique
+  password     String
+  templateName String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AbstractTemplate {
+  id           String      @id @default(uuid())
+  templateName String
+  menu         MenuItems[]
+}
+
+model MenuItems {
+  id                 String            @id @default(uuid())
+  title              String            @default("Home")
+  url                String            @default("/")
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  AbstractTemplate   AbstractTemplate? @relation(fields: [abstractTemplateId], references: [id])
+  abstractTemplateId String?
+}

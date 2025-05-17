@@ -3,6 +3,7 @@ import express, { Express, Request, Response, urlencoded } from "express";
 import { Liquid } from "liquidjs";
 import path from "path";
 import { AbstractThemeOptions } from "./data/contants";
+import RouteHandler from "./routes";
 
 const app: Express = express();
 const PORT = 3000;
@@ -14,8 +15,13 @@ const engine = new Liquid({
   extname: ".liquid",
 });
 
+app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+// Routes
+
+app.use(RouteHandler);
 
 app.get("/", async (req: Request, res: Response) => {
   const html = await engine.renderFile("abstract/index", AbstractThemeOptions);
