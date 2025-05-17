@@ -50,6 +50,7 @@ const express_1 = __importStar(require("express"));
 const liquidjs_1 = require("liquidjs");
 const path_1 = __importDefault(require("path"));
 const contants_1 = require("./data/contants");
+const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
 const PORT = 3000;
 // Liquid Template Engine
@@ -57,8 +58,11 @@ const engine = new liquidjs_1.Liquid({
     root: path_1.default.resolve(__dirname, "templates"),
     extname: ".liquid",
 });
+app.use(express_1.default.json());
 app.use((0, express_1.urlencoded)({ extended: true }));
 app.use(express_1.default.static("public"));
+// Routes
+app.use(routes_1.default);
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const html = yield engine.renderFile("abstract/index", contants_1.AbstractThemeOptions);
     res.send(html);

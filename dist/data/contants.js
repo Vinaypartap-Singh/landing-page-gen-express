@@ -8,6 +8,20 @@ exports.AbstractThemeOptions = {
     outlineBtnHref: "https://vinaypartap.netlify.app/contact",
     fillBtnText: "Contact Us",
     fillBtnHref: "https://vinaypartap.netlify.app/contact",
+    menuItems: [
+        {
+            title: "Home",
+            url: "/",
+        },
+        {
+            title: "Developer Portfolio",
+            url: "https://vinaypartap.netlify.app/",
+        },
+        {
+            title: "Latest Blogs",
+            url: "https://daily1blog.netlify.app/",
+        },
+    ],
     heroTitle: "How Can We Help?",
     servicesData: [
         {
@@ -63,12 +77,6 @@ exports.AbstractThemeOptions = {
                 { label: "Help Center", link: "/help-center" },
                 { label: "Release Now", link: "/release-now" },
                 { label: "Status", link: "/status" },
-                { label: "Community", link: "/community" },
-                { label: "Twitter", link: "https://twitter.com/abstract" },
-                { label: "LinkedIn", link: "https://linkedin.com/company/abstract" },
-                { label: "Facebook", link: "https://facebook.com/abstract" },
-                { label: "Dribble", link: "https://dribbble.com/abstract" },
-                { label: "Podcast", link: "/podcast" },
             ],
         },
         {

@@ -19,17 +19,49 @@ model User {
 }
 
 model AbstractTemplate {
-  id           String      @id @default(uuid())
-  templateName String
-  menu         MenuItems[]
+  id             String         @id @default(uuid())
+  templateName   String
+  metaTitle      String
+  headerTitle    String
+  outlineBtnText String
+  fillBtnText    String
+  menu           MenuItems[]
+  ServicesData   ServicesData[]
+  Footer         Footer[]
 }
 
 model MenuItems {
-  id                 String            @id @default(uuid())
-  title              String            @default("Home")
-  url                String            @default("/")
-  createdAt          DateTime          @default(now())
-  updatedAt          DateTime          @updatedAt
-  AbstractTemplate   AbstractTemplate? @relation(fields: [abstractTemplateId], references: [id])
-  abstractTemplateId String?
+  id               String            @id @default(uuid())
+  title            String            @default("Home")
+  url              String            @default("/")
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  AbstractTemplate AbstractTemplate? @relation(fields: [templateId], references: [id])
+  templateId       String?
+}
+
+model ServicesData {
+  id               String           @id @default(uuid())
+  imageUrl         String
+  title            String
+  description      String
+  btnText          String
+  themeId          String
+  AbstractTemplate AbstractTemplate @relation(fields: [themeId], references: [id])
+}
+
+model Footer {
+  id      String           @id @default(uuid())
+  title   String
+  themeId String
+  theme   AbstractTemplate @relation(fields: [themeId], references: [id])
+  options FooterOption[]
+}
+
+model FooterOption {
+  id       String  @id @default(uuid())
+  label    String
+  link     String
+  Footer   Footer? @relation(fields: [footerId], references: [id])
+  footerId String?
 }

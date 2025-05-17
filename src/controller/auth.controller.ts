@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { Request, Response, Router } from "express";
 import jwt from "jsonwebtoken";
 import { prisma } from "../db/db.config";
+import { AuthMiddleware } from "../middleware/auth.middleware";
 import { handleCatchError, handleTryResponseHandler } from "../utils/helper";
 import {
   LoginUserSchema,
@@ -89,6 +90,15 @@ AuthHandler.post("/login", async (req: Request, res: Response) => {
     return handleTryResponseHandler(res, 200, "Login Success", responsePayload);
   } catch (error) {
     return handleCatchError(error, res, "Error while creating account");
+  }
+});
+
+AuthHandler.get("/user-info", AuthMiddleware, (req: Request, res: Response) => {
+  try {
+    const user = req.user;
+    return handleTryResponseHandler(res, 200, "User Info", user);
+  } catch (error) {
+    return handleCatchError(error, res, "Error while getting user information");
   }
 });
 
