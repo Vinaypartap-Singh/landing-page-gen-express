@@ -46,7 +46,7 @@ model MenuItems {
   updatedAt        DateTime          @updatedAt
   user             User              @relation(fields: [userId], references: [id])
   AbstractTemplate AbstractTemplate? @relation(fields: [templateId], references: [id])
-  templateId       String            @unique
+  templateId       String
   userId           String
 }
 
@@ -56,7 +56,7 @@ model ServicesData {
   title            String
   description      String
   btnText          String
-  templateId       String           @unique
+  templateId       String
   userId           String
   user             User             @relation(fields: [userId], references: [id])
   AbstractTemplate AbstractTemplate @relation(fields: [templateId], references: [id])
@@ -65,7 +65,7 @@ model ServicesData {
 model Footer {
   id         String           @id @default(uuid())
   title      String
-  templateId String           @unique
+  templateId String
   userId     String
   user       User             @relation(fields: [userId], references: [id])
   theme      AbstractTemplate @relation(fields: [templateId], references: [id])
@@ -79,5 +79,5 @@ model FooterOption {
   theme      AbstractTemplate @relation(fields: [templateId], references: [id])
   Footer     Footer?          @relation(fields: [footerId], references: [id])
   footerId   String
-  templateId String           @unique
+  templateId String
 }
