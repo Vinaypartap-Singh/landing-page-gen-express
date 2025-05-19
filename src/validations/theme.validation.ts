@@ -41,6 +41,7 @@ export const CreateMenuItems = z.object({
 //   btnText          String
 
 export const ServiceItems = z.object({
+  id: z.string({ message: "An Id is required" }),
   imageUrl: z.string({ message: "Image Url is required" }),
   title: z.string({ message: "Title is required" }),
   description: z.string({ message: "Description is required" }),
@@ -52,6 +53,7 @@ export const Footer = z.object({
 });
 
 export const FooterOption = z.object({
+  id: z.string({ message: "Label is required" }),
   label: z.string({ message: "Label is required" }),
   link: z.string({ message: "Link is required" }),
 });

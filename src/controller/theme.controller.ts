@@ -145,7 +145,7 @@ ThemeHandler.post(
         return handleTryResponseHandler(res, 400, "Unauthorized Access");
       }
 
-      const templateExist = await prisma.abstractTemplate.findUnique({
+      const templateExist = await prisma.abstractTemplate.findMany({
         where: {
           userId: user.id,
         },
@@ -168,7 +168,7 @@ ThemeHandler.post(
           description: payload.description,
           imageUrl: payload.imageUrl,
           btnText: payload.btnText,
-          templateId: templateExist.id,
+          templateId: payload.id,
           userId: user.id,
         },
       });
@@ -273,9 +273,9 @@ ThemeHandler.post(
         );
       }
 
-      const footer = await prisma.footer.findUnique({
+      const footer = await prisma.footer.findFirst({
         where: {
-          templateId: templateExist.id,
+          templateId: payload.id,
         },
       });
 
